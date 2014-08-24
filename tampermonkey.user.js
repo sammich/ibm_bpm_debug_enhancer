@@ -93,7 +93,8 @@ function each(list, func) {
 }
 
 function addRadioPinButtons() {
-	var pinnedVar = GM_getValue('pinnedVar')
+	var pinnedVar = GM_getValue('pinnedVar');
+    
 	each(document.querySelectorAll('.table'), function() {
 		each(this.getElementsByTagName('tr'), function(i) {
 			var firstCell = this.querySelector('td, th');
@@ -113,10 +114,10 @@ function addRadioPinButtons() {
 			
 			if (radioCell) {
 				this.insertBefore(radioCell, firstCell);
-			}
-			if (id === pinnedVar) {
-				pinnedElement = radioCell;
-				closest(pinnedElement, 'tr').classList.add('pinned');
+                if (id === pinnedVar && pinnedVar) {
+					pinnedElement = radioCell;
+					closest(pinnedElement, 'tr').classList.add('pinned');
+				}
 			}
 		});
 	});
@@ -124,7 +125,7 @@ function addRadioPinButtons() {
 	onEvent(document.body, 'change', 'input', function(e) {
 		GM_setValue('pinnedVar', this.value);
 		
-		if (pinnedElement) 
+		if (pinnedElement)
 			closest(pinnedElement, 'tr').classList.remove('pinned');
 		
 		pinnedElement = this;
