@@ -155,6 +155,11 @@ function addNamespaceCollapser() {
  * This will add a click toggle to switch these on and off ONLY for strings
  */ 
 function addTextConverters() {
+	
+	// I'm disabling this until I figure out what's happening with the auto stepping that's happening from
+	// I think is caused by this function
+	return;
+	
 	each(document.querySelectorAll('tr[id]'), function() {
  		var cells = this.querySelectorAll('td');
 		
